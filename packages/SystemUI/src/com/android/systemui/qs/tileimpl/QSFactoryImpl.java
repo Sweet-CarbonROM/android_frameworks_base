@@ -41,6 +41,7 @@ import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
+import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenRecordTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
@@ -87,6 +88,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<SmartPixelsTile> mSmartPixelsTileProvider;
     private final Provider<VolumeTile> mVolumeTileProvider;
+    private final Provider<RebootTile> mRebootTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
 
@@ -116,7 +118,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<HeadsUpTile> headsUpTileProvider,
             Provider<DataSwitchTile> dataSwitchTileProvider,
             Provider<SmartPixelsTile> smartPixelsTileProvider,
-            Provider<VolumeTile> volumeTileProvider) {
+            Provider<VolumeTile> volumeTileProvider,
+            Provider<RebootTile> rebootTileProvider) {
         mQsHostLazy = qsHostLazy;
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
@@ -143,6 +146,7 @@ public class QSFactoryImpl implements QSFactory {
         mDataSwitchTileProvider = dataSwitchTileProvider;
         mSmartPixelsTileProvider = smartPixelsTileProvider;
         mVolumeTileProvider = volumeTileProvider;
+        mRebootTileProvider = rebootTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -204,6 +208,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mSmartPixelsTileProvider.get();
             case "volume_panel":
                 return mVolumeTileProvider.get();
+            case "reboot":
+                return mRebootTileProvider.get();
         }
 
         // Custom tiles
