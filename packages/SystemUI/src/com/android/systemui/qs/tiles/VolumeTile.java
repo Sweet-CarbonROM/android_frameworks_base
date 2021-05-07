@@ -64,7 +64,7 @@ public class VolumeTile extends QSTileImpl<BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return LineageMetricsLogger.CARBONFIBERS;
+        return MetricsEvent.CARBONFIBERS;
     }
 
     @Override
